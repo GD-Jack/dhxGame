@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jack.dao.AdminMapper">
+  <resultMap id="BaseResultMap" type="com.jack.entity.Admin">
+    <id column="admin_name" jdbcType="VARCHAR" property="adminName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from admin
+    where admin_name = #{adminName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jack.entity.Admin">
+    insert into admin (admin_name, password)
+    values (#{adminName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.jack.entity.Admin">
+    update admin
+    set password = #{password,jdbcType=VARCHAR}
+    where admin_name = #{adminName,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select admin_name, password
+    from admin
+    where admin_name = #{adminName,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select admin_name, password
+    from admin
+  </select>
+</mapper>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>悼红轩游戏</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="keywords" content=""/>
+
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all"/>
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/chocolat.css" type="text/css" media="all">
+
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+    <script src="js/responsiveslides.min.js"></script>
+    <script>
+        // $(window).load(function() {
+        $(function () {
+            // Slideshow 4
+            $("#slider4").responsiveSlides({
+                auto: true,
+                pager: true,
+                nav: true,
+                speed: 500,
+                namespace: "callbacks",
+                before: function () {
+                    $('.events').append("<li>before event fired.</li>");
+                },
+                after: function () {
+                    $('.events').append("<li>after event fired.</li>");
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btn").click(function () {
+                if ($("#username").value.trim() == "" || $("#password").value.trim() == "") {
+                    alert("用户名或密码不能为空");
+                } else {
+                    $("userForm").submit();
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+<div class="header">
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+            <nav>
+                <ul class="nav navbar-nav">
+                    <li><a href="index/index">悼红轩游戏</a></li>
+                    <li><a href="index/about" target="_blank">关于</a></li>
+                    <li><a href="index/mall" target="_blank">最新游戏</a></li>
+                    <li><a href="index/team" target="_blank">团队</a></li>
+                    <li><a href="index/blog" target="_blank">博客</a></li>
+                    <li><a href="index/joinUs" target="_blank">加人我们</a></li>
+                    <li><a href="index/login">登录</a></li>
+                </ul>
+            </nav>
+        </div>
+    </nav>
+</div>
+
+<div class="banner">
+    <div class="agileinfo-dot">
+        <div class="agileits-logo">
+            <h1><a href="index.html">悼红轩 <span>游戏</span></a></h1>
+        </div>
+
+        <div class="w3layouts-banner-info">
+            <div class="container">
+                <div class="w3layouts-banner-slider">
+                    <div class="w3layouts-banner-top-slider">
+                        <div class="slider">
+                            <div class="callbacks_container">
+                                <ul class="rslides callbacks callbacks1" id="slider4">
+                                    <li>
+                                        <div class="banner_text">
+                                            <h3>最新消息</h3>
+                                            <p>悼红轩游戏工作室被Rockstar Games（R星）收购</p>
+                                            <div class="w3-button">
+                                                <a href="#" data-toggle="modal" data-target="#studioNews">阅读详细</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="banner_text">
+                                            <h3>游戏动态</h3>
+                                            <p>刘慈欣授权正版VR游戏《三体》将于2077年2月13日发售</p>
+                                            <div class="w3-button">
+                                                <a href="#" data-toggle="modal" data-target="#gameNews">阅读详细</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal about-modal fade" id="studioNews" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">工作室新闻</h4>
+            </div>
+            <div class="modal-body">
+                <div class="agileits-w3layouts-info">
+                    <img src="images/rockstar.jpg" alt=""/>
+                    <p>2077年6月6日。悼红轩工作室被Rockstar Games（R星）以666亿美元成交价收购，收购内容包括悼红轩游戏工作室旗下的所有ip，工作室创始人Jack将继续担任工作室的CEO。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal about-modal fade" id="gameNews" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">游戏新闻</h4>
+            </div>
+            <div class="modal-body">
+                <div class="agileits-w3layouts-info">
+                    <img src="images/threebody.jpg" alt=""/>
+                    <p>悼红轩工作室获得刘慈欣科幻小说《三体》、《三体Ⅱ：黑暗森林》、《三体Ⅲ：死神永生》版权，VR游戏《三体》将于2077年2月13日发售。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="container">
+        <div class="footer-top">
+            <div class="col-md-4 amet-sed">
+                <div class="footer-title">
+                    <h3>关于我们</h3>
+                </div>
+                <p>游戏界的曹雪芹</p>
+            </div>
+            <div class="col-md-4 amet-sed amet-medium">
+                <div class="footer-title">
+                    <h3>最新活动</h3>
+                </div>
+                <p>悼红轩游戏工作室被Rockstar Games（R星）收购</p>
+            </div>
+            <div class="col-md-4 amet-sed ">
+                <div class="footer-title">
+                    <h3>联系我们</h3>
+                </div>
+                <div class="agileinfo-social-grids">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="#"><i class="fa fa-vk"></i></a></li>
+                    </ul>
+                </div>
+                <div class="support">
+                    <form action="#" method="post">
+                        <input type="email" placeholder="请输入邮箱">
+                        <input type="submit" value="订阅" class="botton">
+                    </form>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<div class="copyright">
+    <div class="container">
+        <p class="footer-class">Copyright &copy; 2020.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+    </div>
+</div>
+</body>
+</html>

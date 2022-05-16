@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jack.dao.GameMapper">
+  <resultMap id="BaseResultMap" type="com.jack.entity.Game">
+    <id column="game_id" jdbcType="INTEGER" property="gameId" />
+    <result column="gameName" jdbcType="VARCHAR" property="gamename" />
+    <result column="price" jdbcType="REAL" property="price" />
+    <result column="introduce" jdbcType="VARCHAR" property="introduce" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from game
+    where game_id = #{gameId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jack.entity.Game">
+    insert into game (game_id, gameName, price, 
+      introduce)
+    values (#{gameId,jdbcType=INTEGER}, #{gamename,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, 
+      #{introduce,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.jack.entity.Game">
+    update game
+    set gameName = #{gamename,jdbcType=VARCHAR},
+      price = #{price,jdbcType=REAL},
+      introduce = #{introduce,jdbcType=VARCHAR}
+    where game_id = #{gameId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select game_id, gameName, price, introduce
+    from game
+    where game_id = #{gameId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select game_id, gameName, price, introduce
+    from game
+  </select>
+</mapper>

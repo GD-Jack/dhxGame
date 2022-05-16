@@ -1,0 +1,15 @@
+spring:
+  mail:
+    # 邮件服务地址
+    host: smtp.qq.com
+    # qq邮箱
+    username: 206534437@qq.com
+    # 授权码(注意! 不是邮箱密码)
+    password: aeppqrenhbyxbhia
+    # other
+    properties:
+      mail:
+        # 是否开启SSL(QQ邮箱请开启)
+        smtp:
+          ssl:
+            enable: true

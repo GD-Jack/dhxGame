@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Head -->
+
+<head>
+
+    <title>登录</title>
+
+    <!-- Meta-Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- style CSS -->
+    <link rel="stylesheet" href="../static/css/loginStyle.css" th:href="@{/css/loginStyle.css}" type="text/css"
+          media="all">
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="../static/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}"
+          type="text/css" media="all">
+
+    <!-- google fonts -->
+    <link href="//fonts.googleapis.com/css?family=Mukta:300,400,500" rel="stylesheet">
+
+    <script type="text/javascript" src="../static/js/jquery-3.4.1.js" th:src="@{/js/jquery-3.4.1.js}"></script>
+    <script type="text/javascript" th:inline="javascript">
+        $(function () {
+            if ([[${msg}]] != null) {
+                $("#formError").text([[${msg}]]);
+            }
+            $(".form-text").on("focus", function () {
+                $("#formError").text("");
+            })
+
+            $("#email").on("blur", function () {
+                var emailRegExp = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+                if (!emailRegExp.test($("#email").val())) {
+                    $("#emailError").text("请输入正确的邮箱");
+                } else {
+                    $.ajax({
+                        url: [[${#request.getContextPath()}]] + "/user/emailInspection?email=" + $("#email").val(),
+                        dataType: "text",
+                        success: function (result) {
+                            if (result == 2) {
+                                $("#emailError").text("该邮箱未经过注册");
+                                $("#codeBtn").attr({"disabled": "disabled"});
+                            }
+                        }
+                    })
+                }
+            })
+
+            $("#email").on("focus", function () {
+                $("#emailError").text("");
+            })
+
+            $("#password").on("blur", function () {
+                var passwordRegExp = /^[^\s]*$/;
+                if ($("#password").val().length < 6 || $("#password").val().length > 20) {
+                    $("#passwordError").text("密码不能小于六位或大于二十位");
+                } else if (!passwordRegExp.test($("#password").val())) {
+                    $("#passwordError").text("密码中不能出现空格");
+                }
+            })
+            $("#password").on("focus", function () {
+                $("#passwordError").text("");
+            })
+
+            $("#submitBtn").click(function () {
+                $("#email").focus();
+                $("#email").blur();
+                $("#password").focus();
+                $("#password").blur();
+                $("#form").attr("action", [[${#request.getContextPath()}]] + "/user/login");
+                if ($("#emailError").text() == "" && $("#passwordError").text() == "") {
+                    $("#form").submit();
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+
+<section class="main">
+    <div class="bottom-grid">
+        <div class="logo">
+            <h1><a href="index.html">主页</a></h1>
+        </div>
+    </div>
+    <!-- register -->
+    <div class="w3lhny-register">
+        <div class="iconhny">
+            <span class="fa fa-user-plus"></span>
+        </div>
+        <form method="post" class="register-form" id="form">
+            <fieldset>
+                <div class="form">
+
+                    <div class="form-row">
+                        <span class="fa fa-envelope"></span>
+
+                        <input type="email" name="email" id="email" class="form-text" placeholder="登录邮箱" required="required">
+                    </div>
+                    <div class="form-error-div">
+                        <span id="emailError" class="form-error"></span>
+                    </div>
+                    <div class="form-row">
+                        <span class="fa fa-lock"></span>
+
+                        <input type="password" name="password" id="password" class="form-text" placeholder="密码" required="required">
+                    </div>
+                    <div class="form-error-div">
+                        <span id="passwordError" class="form-error"></span>
+                    </div>
+                    <div class="form-row button-login">
+                        <input type="button" id="submitBtn" class="btn btn-login" value="登录">
+                    </div>
+                    <div class="form-error-div">
+                        <span id="formError" style="float: contour;color: #ff0000"></span>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        <p class="already"><span id="flag" style="float: left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;没有账号？</span>
+            <a href="signUp.html" th:href="${#request.getContextPath()} + '/index/signUp'" style="float: left">注册</a>
+            <a href="changePassword.html" th:href="${#request.getContextPath()} + '/index/changePassword'" style="float: right">忘记密码？</a></p>
+    </div>
+    <!-- //register -->
+    <div class="w3l-copyright">
+        <p>© 2020 Workspace Sign Up Form. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a>
+        </p>
+    </div>
+</section>
+
+</body>
+</html>
